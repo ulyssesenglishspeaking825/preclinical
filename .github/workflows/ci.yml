@@ -112,7 +112,7 @@ jobs:
       - name: Secret scanning with gitleaks
         run: |
           curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz | tar -xz -C /usr/local/bin gitleaks
-          gitleaks detect --source . --redact
+          gitleaks detect --source . --redact --config .gitleaks.toml
 
       - name: Audit server dependencies
         run: cd server && npm ci && npm audit --audit-level=high
