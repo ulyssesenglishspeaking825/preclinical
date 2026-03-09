@@ -115,7 +115,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Audit server dependencies
-        run: cd server && npm ci && npm audit --audit-level=high || true
+        run: cd server && npm ci && npm audit --audit-level=high
 
       - name: Audit frontend dependencies
-        run: cd frontend && npm ci && npm audit --audit-level=high || true
+        run: cd frontend && npm ci && npm audit --audit-level=high
